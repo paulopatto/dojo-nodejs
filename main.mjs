@@ -4,6 +4,13 @@ function createThread(data) {
   const worker = new Worker("./job.mjs");
   worker.postMessage(data);
 
+  /**
+   * Como a comunicação de threads com o processo principal é por callbacks
+   * é feita uma transformação para Promises;
+   *
+   * Ou seja é enviado uma mensagem :postMessage -> data 
+   * E ela devolve através do evento :message e ai podemos resolver a promisse
+   */
   const threadPromise = new Promise((resolve, reject) => {
     worker.once("message", (message) => {
       return resolve(message);
@@ -16,19 +23,19 @@ function createThread(data) {
 
 const results = await Promise.all([
   createThread({
-    name: "file01",
+    password: "file01",
   }),
   createThread({
-    name: "file02",
+    password: "file02",
   }),
   createThread({
-    name: "file03",
+    password: "file03",
   }),
   createThread({
-    name: "file04",
+    password: "file04",
   }),
   createThread({
-    name: "file05",
+    password: "file05",
   }),
 
 ]);
