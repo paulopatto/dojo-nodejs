@@ -1,0 +1,20 @@
+{
+  "name": "multi_thread_nodejs",
+  "version": "1.0.0",
+  "description": "Teste de threads em NodeJS",
+  "main": "main.mjs",
+  "scripts": {
+    "start": "node main.mjs",
+    "start-8": "UV_THREADPOOL_SIZE=15 node main.mjs",
+    "start-15": "UV_THREADPOOL_SIZE=15 node main.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "threads",
+    "nodejs",
+    "workers",
+    "multi-task"
+  ],
+  "author": "Paulo Patto <paulopatto@paulopatto.com>",
+  "license": "ISC"
+}

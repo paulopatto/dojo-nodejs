@@ -22,22 +22,12 @@ function createThread(data) {
 }
 
 const results = await Promise.all([
-  createThread({
-    password: "file01",
-  }),
-  createThread({
-    password: "file02",
-  }),
-  createThread({
-    password: "file03",
-  }),
-  createThread({
-    password: "file04",
-  }),
-  createThread({
-    password: "file05",
-  }),
-
+  createThread({ password: "file01", }),
+  createThread({ password: "file02", }),
+  createThread({ password: "file03", }),
+  createThread({ password: "file04", }),
+  createThread({ password: "file05", }),
+  createThread({ password: "file06", }),
 ]);
 
 console.log(results);
