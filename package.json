@@ -1,12 +1,12 @@
 {
-  "name": "multi_thread_nodejs",
+  "name": "dojo_nodejs",
   "version": "1.0.0",
   "description": "Teste de threads em NodeJS",
   "main": "main.mjs",
   "scripts": {
-    "start": "node main.mjs",
-    "start-8": "UV_THREADPOOL_SIZE=15 node main.mjs",
-    "start-15": "UV_THREADPOOL_SIZE=15 node main.mjs",
+    "threads:normal": "node Threads/main.mjs",
+    "threads:double": "UV_THREADPOOL_SIZE=8 node Threads/main.mjs",
+    "threads:super": "UV_THREADPOOL_SIZE=15 node Threads/main.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
