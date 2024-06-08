@@ -9,6 +9,8 @@
     "threads:super": "UV_THREADPOOL_SIZE=15 node Threads/main.mjs",
     "stream:paser-customers": "node Streams/main.mjs",
     "lint": "eslint -c eslint.config.mjs .",
+    "climem": "npx climem 8989",
+    "start": "CLIMEM=8989 node -r climem Streams/database_pipe_stream.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,10 +22,14 @@
   "author": "Paulo Patto <paulopatto@paulopatto.com>",
   "license": "ISC",
   "dependencies": {
-    "csv-parser": "^3.0.0"
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "knex": "^3.1.0",
+    "mysql2": "^3.10.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "climem": "^2.0.0",
     "eslint": "^9.4.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.3.0"

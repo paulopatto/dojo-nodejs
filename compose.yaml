@@ -1,0 +1,60 @@
+volumes:
+    mysql_playground_data:
+      driver: local
+
+services:
+  mysql:
+    container_name: ocpp-server-mysql
+    hostname: ocpp-server-database
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - mysql_playground_data:/var/lib/mysql:rw
+      #- "./etc/mysql/my.cnf:/etc/mysql.conf.d/mysqld.cnf"
+      #- "./etc/msqyl/create_users.sql:/docker-entrypoint-initdb.d/00-mysql-create-users"
+      - "./Streams/data/DDL/create_tables.sql:/docker-entrypoint-initdb.d/01-stream-create-tables.sql"
+    ports:
+      - "3306:3306"
+    environment:
+      LANG: pt_BR.UTF-8  
+      LANGUAGE: pt_BR:pt 
+      LC_ALL: pt_BR.UTF-8
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USERNAME}
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "200MB"
+
+  # # grafana used for graphing mysql data
+  # grafana:
+  #   image: grafana/grafana
+  #   ports:
+  #     - '9101:3000'
+  #   environment:
+  #     GF_INSTALL_PLUGINS: percona-percona-app
+
+  # # tool to connect to mysql instance, and allow prometheus to collect mysql stats
+  # prom_mysql_exporter:
+  #   image: prom/mysqld-exporter
+  #   links:
+  #     - mysql
+  #   ports:
+  #     - '9104:9104'
+  #   environment:
+  #     DATA_SOURCE_NAME: root:${MYSQL_ROOT_PASSWORD}@(mysql:3306)/${MYSQL_DATABASE}
+  #   command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true
+
+  # # prometheus stores and handles timeseries data for statistics around mysql
+  # prometheus:
+  #   image: prom/prometheus
+  #   volumes:
+  #     - ./prometheus:/etc/prometheus
+  #   links:
+  #     - prom_mysql_exporter
+  #   ports:
+  #     - "9102"

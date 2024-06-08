@@ -43,6 +43,26 @@ Podemos usar alguns arquivos de dados de exemplos, peguei esses aqui de exemplos
 - Subscription Date
 - Website
 
+```
+describe customers;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| customer_id       | varchar(255) | NO   | MUL | NULL    |                |
+| first_name        | varchar(255) | NO   |     | NULL    |                |
+| last_name         | varchar(255) | NO   |     | NULL    |                |
+| company           | varchar(255) | NO   | MUL | NULL    |                |
+| city              | varchar(255) | NO   | MUL | NULL    |                |
+| country           | varchar(255) | NO   | MUL | NULL    |                |
+| phone_1           | varchar(255) | NO   |     | NULL    |                |
+| phone_2           | varchar(255) | YES  |     | NULL    |                |
+| email             | varchar(255) | NO   | MUL | NULL    |                |
+| subscription_date | date         | NO   | MUL | NULL    |                |
+| website           | varchar(255) | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+12 rows in set (0,00 sec)
+```
 
 
 ### People
@@ -59,14 +79,14 @@ Podemos usar alguns arquivos de dados de exemplos, peguei esses aqui de exemplos
 #### Schema
 
 - Index
-- User Id
-- First Name
-- Last Name
+- User Id `user_id`
+- First Name `first_name`
+- Last Name `last_name`
 - Sex
 - Email
 - Phone
-- Date of birth
-- Job Title
+- Date of birth `date_of_birth`
+- Job Title `job_title`
 
 
 
